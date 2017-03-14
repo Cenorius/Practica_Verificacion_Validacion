@@ -1,1 +1,1 @@
-from .practica import count
+from .practica import *
