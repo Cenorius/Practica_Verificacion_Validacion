@@ -28,5 +28,15 @@ class PracticaTestSuite(unittest.TestCase):
 		str=u'Si si Hola Bien biEn bieN BIEN'
 
 		result=Practica.count(str)
-		print(result)
+		
 		self.assertEqual(result,[('hola',1),('si',2),('bien',4)],"La lista devuelta tiene mayusculas")
+
+	def test_removeStopwords(self):
+		stopwords=['la','me','el']
+		
+		str=['el','la','me','the','je','of','coche']
+
+		result=Practica.removeStopwords(str,stopwords)
+
+		print(result)
+		self.assertEqual(result,['coche'],"La lista devuelta tiene stopwords")
