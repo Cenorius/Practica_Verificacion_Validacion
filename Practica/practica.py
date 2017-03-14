@@ -10,10 +10,11 @@ def count(ustra):
 	ustra=ustra.lower()
 
 	la_words=ustra.split(" ")
+
+	la_words=removeSymbols(la_words)
+	la_words=removeStopwords(la_words)
+
 	la_frecuencies=[]
-
-	#la_words=removeStopwords(la_words)
-
 	for w in la_words:
 		la_frecuencies.append(la_words.count(w))
 
@@ -25,4 +26,8 @@ def count(ustra):
 
 def removeStopwords(la_words):
 	la_words=[w for w in la_words if w not in stopwords]
+	return la_words
+
+def removeSymbols(la_words):
+	la_words=[e for e in la_words if e.isalnum()]
 	return la_words
