@@ -3,6 +3,7 @@ import unicodedata
 
 def count(ustra):
 	ustra=unicodedata.normalize('NFKD', ustra).encode('ASCII', 'ignore')
+	ustra=ustra.lower()
 
 	la_words=ustra.split(" ")
 	la_frecuencies=[]
