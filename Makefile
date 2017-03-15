@@ -5,5 +5,5 @@ test:
 	nosetests tests
 
 coverage:
-	coverage run sample/core.py
+	coverage run Practica/practica.py
 	coverage report -m
