@@ -8,10 +8,10 @@ stopwords=get_stop_words('spanish')
 
 def count(ustra):
 
-	if(type(ustra) is not str) and (type(ustra) is not unicode):
-		raise TypeError("The type must be string or unicode")
+	if(not isinstance(ustra, (str, unicode))):
+		raise TypeError("The type must be str or unicode")
 
-	if(type(ustra) is str):
+	if(isinstance(ustra, str)):
 		ustra=unicode(ustra,'utf-8','ignore')
 
 	ustra=unicodedata.normalize('NFKD', ustra).encode('ASCII', 'ignore')
@@ -21,11 +21,9 @@ def count(ustra):
 	la_words=removeSymbolsAndWhiteSpaces(ustra)
 	la_words=removeStopwords(la_words)
 
-	la_frecuencies=getWordsFrecuencies(la_words)
-
-	lcount=zip(la_words, la_frecuencies)
+	lcount=getWordsFrecuencies(la_words)
 	
-	lcount=sorted(set(lcount),key=lambda x:x[1])
+	lcount=sorted(lcount,key=lambda x:x[1])
 	
 	return lcount
 
@@ -39,9 +37,22 @@ def removeSymbolsAndWhiteSpaces(ustra):
 	return list
 
 def getWordsFrecuencies(la_words):
+	if(not isinstance(la_words, list)):
+		raise TypeError("The type must be list")
+	print(la_words)
 	la_frecuencies=[]
-	if (la_words == None):
-		return []
+
 	for w in la_words:
+		if(not isinstance(w, (str, unicode))):
+			raise TypeError("The list elements must be str or unicode")
 		la_frecuencies.append(la_words.count(w))
-	return la_frecuencies
+	
+	lcount=zip(la_words, la_frecuencies)
+	lcount=set(lcount)
+	lcount=list(lcount)
+	
+	return lcount
+
+if __name__ == "__main__":
+	tstr='bicicleta,bicicletá hola @bièn bién bien ©"'
+	tstr=count(tstr)
