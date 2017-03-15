@@ -1,4 +1,7 @@
 ENV
+build
+dist
+Practica_2.egg-info
 *.pyc
 *.xml
 *.iml
