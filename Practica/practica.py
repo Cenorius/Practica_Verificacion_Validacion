@@ -28,7 +28,7 @@ def count(ustra):
 	return lcount
 
 def removeStopwords(la_words):
-	la_words=[w for w in la_words if w not in stopwords]
+	la_words=[w for w in la_words if w not in stopwords ]
 	return la_words
 
 def removeSymbolsAndWhiteSpaces(ustra):
@@ -50,7 +50,7 @@ def getWordsFrecuencies(la_words):
 	lcount=zip(la_words, la_frecuencies)
 	lcount=set(lcount)
 	lcount=list(lcount)
-	
+
 	return lcount
 
 if __name__ == "__main__":
