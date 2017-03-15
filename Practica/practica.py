@@ -13,9 +13,7 @@ def count(ustra):
 	la_words=removeSymbolsAndWhiteSpaces(ustra)
 	la_words=removeStopwords(la_words)
 
-	la_frecuencies=[]
-	for w in la_words:
-		la_frecuencies.append(la_words.count(w))
+	la_frecuencies=getWordsFrecuencies(la_words)
 
 	lcount=zip(la_words, la_frecuencies)
 	
@@ -30,3 +28,9 @@ def removeStopwords(la_words):
 def removeSymbolsAndWhiteSpaces(ustra):
 	list=re.split('\W+',ustra)
 	return list
+
+def getWordsFrecuencies(la_words):
+	la_frecuencies=[]
+	for w in la_words:
+		la_frecuencies.append(la_words.count(w))
+	return la_frecuencies
