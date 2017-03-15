@@ -55,19 +55,42 @@ class PracticaTestSuite(unittest.TestCase):
 
 		self.assertEqual(result,['coche'],"La lista devuelta tiene stopwords")
 
-	def test_removeSymbolsAndWhiteSpaces(self):
+	def test_removeSymbolsAndWhiteSpaces_String(self):
 		lstr="que pasa ,tio, #, @ , (), (colega, bien,bien ©"
 
 		result=Practica.removeSymbolsAndWhiteSpaces(lstr)
 		
 		self.assertEqual(result,["que" ,"pasa" ,"tio","colega","bien","bien"],"La lista devuelta tiene simbolos")
 
-	def test_getWordsFrecuency(self):
+	def test_removeSymbolsAndWhiteSpaces_Unicode(self):
+		lstr=u"que pasa ,tio, #, @ , (), (colega, bien,bien ©"
+
+		result=Practica.removeSymbolsAndWhiteSpaces(lstr)
+
+		self.assertEqual(result,["que" ,"pasa" ,"tio","colega","bien","bien"],"La lista devuelta tiene simbolos")
+
+
+	def test_getWordsFrecuency_Strings(self):
 		lstr=['hola','bicicleta','bicicleta','bien','bien','bien','bien']
 
 		result=Practica.getWordsFrecuencies(lstr)
 		print(result)
 		self.assertEqual(result,[('hola',1),('bien',4),('bicicleta',2)],"La lista devuelta no es correcta")
+
+	def test_getWordsFrecuency_Unicodes(self):
+		lstr=[u'hola',u'bicicleta',u'bicicleta',u'bien',u'bien',u'bien',u'bien']
+
+		result=Practica.getWordsFrecuencies(lstr)
+		print(result)
+		self.assertEqual(result,[('hola',1),('bien',4),('bicicleta',2)],"La lista devuelta no es correcta")
+
+	def test_getWordsFrecuency_Unicodes_Strings(self):
+		lstr=[u'hola','bicicleta',u'bicicleta','bien',u'bien','bien',u'bien']
+
+		result=Practica.getWordsFrecuencies(lstr)
+		print(result)
+		self.assertEqual(result,[('hola',1),('bien',4),('bicicleta',2)],"La lista devuelta no es correcta")
+
 
 	def test_getWordsFrecuency_None(self):
 		lstr=None
