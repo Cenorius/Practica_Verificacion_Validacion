@@ -40,6 +40,8 @@ def removeSymbolsAndWhiteSpaces(ustra):
 
 def getWordsFrecuencies(la_words):
 	la_frecuencies=[]
+	if (la_words == None):
+		return []
 	for w in la_words:
 		la_frecuencies.append(la_words.count(w))
 	return la_frecuencies
