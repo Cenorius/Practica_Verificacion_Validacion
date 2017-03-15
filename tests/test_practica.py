@@ -40,9 +40,9 @@ class PracticaTestSuite(unittest.TestCase):
 		self.assertEqual(result,['coche'],"La lista devuelta tiene stopwords")
 
 	def test_removeSymbols(self):
-		lstr=["que" ,"pasa" ,"tio","#","@","()","(colega"]
+		lstr="que pasa ,tio, #, @ , (), (colega, bien,bien"
 
-		result=Practica.removeSymbols(lstr)
+		result=Practica.removeSymbolsAndWhiteSpaces(lstr)
 		print(result)
-		self.assertEqual(result,["que" ,"pasa" ,"tio","colega"],"La lista devuelta tiene simbolos")
+		self.assertEqual(result,["que" ,"pasa" ,"tio","colega","bien","bien"],"La lista devuelta tiene simbolos")
 
