@@ -23,6 +23,14 @@ class PracticaTestSuite(unittest.TestCase):
 		
 		self.assertEqual(result,[('hola',1),('bicicleta',2),('bien',3)],"La lista devuelta no es correcta")
 
+	def test_count_int(self):
+		with self.assertRaises(TypeError):
+			Practica.count(1)
+	
+	def test_count_float(self):
+		with self.assertRaises(TypeError):
+			Practica.count(1.0)
+
 	def test_count_acents(self):
 
 		str=u'bicicleta bicicletá hola bièn bién bien'
