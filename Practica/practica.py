@@ -17,7 +17,7 @@ def count(ustra):
 	ustra=unicodedata.normalize('NFKD', ustra).encode('ASCII', 'ignore')
 	
 	ustra=ustra.lower()
-
+	
 	la_words=removeSymbolsAndWhiteSpaces(ustra)
 	la_words=removeStopwords(la_words)
 
@@ -35,7 +35,7 @@ def removeStopwords(la_words):
 
 def removeSymbolsAndWhiteSpaces(ustra):
 	list=re.split('\W+',ustra)
-	list=[w for w in list if w is not u'']
+	list=[w for w in list if (w is not '') and (w is not u'')]
 	return list
 
 def getWordsFrecuencies(la_words):
