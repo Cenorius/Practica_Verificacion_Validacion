@@ -7,9 +7,17 @@ import unittest
 
 class PracticaTestSuite(unittest.TestCase):
 
-	def test_count(self):
+	def test_count_u(self):
 		
 		str=u"bicicleta bicicleta hola bien bien bien"
+		
+		result=Practica.count(str)
+		
+		self.assertEqual(result,[('hola',1),('bicicleta',2),('bien',3)],"La lista devuelta no es correcta")
+
+	def test_count_str(self):
+		
+		str="bicicleta bicicleta hola bien bien bien"
 		
 		result=Practica.count(str)
 		
@@ -40,9 +48,10 @@ class PracticaTestSuite(unittest.TestCase):
 		self.assertEqual(result,['coche'],"La lista devuelta tiene stopwords")
 
 	def test_removeSymbolsAndWhiteSpaces(self):
-		lstr="que pasa ,tio, #, @ , (), (colega, bien,bien"
+		lstr=u"que pasa ,tio, #, @ , (), (colega, bien,bien ©"
 
 		result=Practica.removeSymbolsAndWhiteSpaces(lstr)
 		print(result)
 		self.assertEqual(result,["que" ,"pasa" ,"tio","colega","bien","bien"],"La lista devuelta tiene simbolos")
 
+	
