@@ -8,6 +8,9 @@ stopwords=get_stop_words('spanish')
 
 def count(ustra):
 
+	if(type(ustra) is not str) and (type(ustra) is not unicode):
+		raise TypeError("The type must be string or unicode")
+
 	if(type(ustra) is str):
 		ustra=unicode(ustra,'utf-8','ignore')
 
