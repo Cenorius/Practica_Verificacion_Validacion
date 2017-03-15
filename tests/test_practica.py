@@ -62,4 +62,11 @@ class PracticaTestSuite(unittest.TestCase):
 		
 		self.assertEqual(result,["que" ,"pasa" ,"tio","colega","bien","bien"],"La lista devuelta tiene simbolos")
 
-	
+	def test_getWordsFrecuencyNone(self):
+		lstr=None
+
+		result=Practica.getWordsFrecuencies(lstr)
+		print(result)
+		self.assertEqual(result, [], "No se ha devuelto un None")
+
+
