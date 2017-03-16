@@ -7,6 +7,8 @@ import unittest
 
 class PracticaTestSuite(unittest.TestCase):
 
+#---Test_count----------------------------------------------------------------------------------------------
+	
 	def test_count_Unicode(self):
 		
 		str=u"bicicleta bicicleta hola bien bien bien"
@@ -22,6 +24,38 @@ class PracticaTestSuite(unittest.TestCase):
 		result=Practica.count(str)
 		
 		self.assertEqual(result,[('hola',1),('bicicleta',2),('bien',3)],"La lista devuelta no es correcta")
+
+	def test_count_acents_String(self):
+
+		str='bicicleta bicicletá hola bièn bién bien'
+		
+		result=Practica.count(str)
+		
+		self.assertEqual(result,[('hola',1),('bicicleta',2),('bien',3)],"La lista devuelta tiene acentos")
+
+	def test_count_acents_Unicode(self):
+
+		str=u'bicicleta bicicletá hola bièn bién bien'
+		
+		result=Practica.count(str)
+		
+		self.assertEqual(result,[('hola',1),('bicicleta',2),('bien',3)],"La lista devuelta tiene acentos")
+
+	def test_count_upper_String(self):
+
+		str='Bicicleta bicicleta Hola Bien biEn bieN BIEN'
+
+		result=Practica.count(str)
+		
+		self.assertEqual(result,[('hola',1),('bicicleta',2),('bien',4)],"La lista devuelta tiene mayusculas")
+
+	def test_count_upper_Unicode(self):
+
+		str=u'Bicicleta bicicleta Hola Bien biEn bieN BIEN'
+
+		result=Practica.count(str)
+		
+		self.assertEqual(result,[('hola',1),('bicicleta',2),('bien',4)],"La lista devuelta tiene mayusculas")
 
 	def test_count_Integer(self):
 		with self.assertRaises(TypeError):
@@ -39,21 +73,7 @@ class PracticaTestSuite(unittest.TestCase):
 		with self.assertRaises(TypeError):
 			Practica.count(['test'])
 
-	def test_count_acents(self):
-
-		str=u'bicicleta bicicletá hola bièn bién bien'
-		
-		result=Practica.count(str)
-		
-		self.assertEqual(result,[('hola',1),('bicicleta',2),('bien',3)],"La lista devuelta tiene acentos")
-
-	def test_count_upper(self):
-
-		str=u'Bicicleta bicicleta Hola Bien biEn bieN BIEN'
-
-		result=Practica.count(str)
-		
-		self.assertEqual(result,[('hola',1),('bicicleta',2),('bien',4)],"La lista devuelta tiene mayusculas")
+#---Test_removeStopwords----------------------------------------------------------------------------------------------
 
 	def test_removeStopwords_Empty(self):
 		lstr=[]
@@ -84,13 +104,13 @@ class PracticaTestSuite(unittest.TestCase):
 
 		self.assertEqual(result,lstr,"La lista devuelta no es igual")
 
-	def test_removeStopwords_Integers(self):
-		lstr=[1,2,3]
+	def test_removeStopwords_Integers_UStopword(self):
+		lstr=[1,2,3,u'que']
 		result=Practica.removeStopwords(lstr)
+		print(result)
+		self.assertEqual(result,[1,2,3],"La lista devuelta es incorrecta")
 
-		self.assertEqual(result,lstr,"La lista devuelta no es igual")
-
-	def test_removeStopwords_Integers_Stopword(self):
+	def test_removeStopwords_Integers_StrStopword(self):
 		lstr=[1,2,3,'que']
 		result=Practica.removeStopwords(lstr)
 
@@ -107,6 +127,8 @@ class PracticaTestSuite(unittest.TestCase):
 
 		with self.assertRaises(TypeError):
 			Practica.removeStopwords(lstr)
+
+#---Test_removeSymbolsAndWhiteSpaces----------------------------------------------------------------------------------------------
 
 	def test_removeSymbolsAndWhiteSpaces_String(self):
 		lstr="que pasa ,tio, #, @ , (), (colega, bien,bien ©"
@@ -140,14 +162,16 @@ class PracticaTestSuite(unittest.TestCase):
 		with self.assertRaises(TypeError):
 			Practica.removeSymbolsAndWhiteSpaces(lstr)
 
-	def test_getWordsFrecuency_Strings(self):
+#---Test_getWordsFrecuencies----------------------------------------------------------------------------------------------
+
+	def test_getWordsFrecuencies_Strings(self):
 		lstr=['hola','bicicleta','bicicleta','bien','bien','bien','bien']
 
 		result=Practica.getWordsFrecuencies(lstr)
 		print(result)
 		self.assertEqual(result,[('hola',1),('bien',4),('bicicleta',2)],"La lista devuelta no es correcta")
 
-	def test_getWordsFrecuency_Unicodes(self):
+	def test_getWordsFrecuencies_Unicodes(self):
 		lstr=[u'hola',u'bicicleta',u'bicicleta',u'bien',u'bien',u'bien',u'bien']
 
 		result=Practica.getWordsFrecuencies(lstr)
@@ -162,68 +186,68 @@ class PracticaTestSuite(unittest.TestCase):
 		self.assertEqual(result,[('hola',1),('bien',4),('bicicleta',2)],"La lista devuelta no es correcta")
 
 	
-	def test_getWordsFrecuency_String(self):
+	def test_getWordsFrecuencies_String(self):
 		lstr="test"
 
 		with self.assertRaises(TypeError):
 			Practica.getWordsFrecuencies(lstr)
 	
-	def test_getWordsFrecuency_Unicode(self):
+	def test_getWordsFrecuencies_Unicode(self):
 		lstr=u"test"
 
 		with self.assertRaises(TypeError):
 			Practica.getWordsFrecuencies(lstr)
 
-	def test_getWordsFrecuency_None(self):
+	def test_getWordsFrecuencies_None(self):
 		lstr=None
 
 		with self.assertRaises(TypeError):
 			Practica.getWordsFrecuencies(lstr)
 
-	def test_getWordsFrecuency_Integers(self):
+	def test_getWordsFrecuencies_Integers(self):
 		lstr=[1,2,3]
 
 		with self.assertRaises(TypeError):
 			Practica.getWordsFrecuencies(lstr)
 
-	def test_getWordsFrecuency_String_Integers(self):
+	def test_getWordsFrecuencies_String_Integers(self):
 		lstr=["test",1,2,3]
 
 		with self.assertRaises(TypeError):
 			Practica.getWordsFrecuencies(lstr)
 
-	def test_getWordsFrecuency_Strings_Integer(self):
+	def test_getWordsFrecuencies_Strings_Integer(self):
 		lstr=["test","test2",3]
 
 		with self.assertRaises(TypeError):
 			Practica.getWordsFrecuencies(lstr)
 
-	def test_getWordsFrecuency_Unicodes_Integer(self):
+	def test_getWordsFrecuencies_Unicodes_Integer(self):
 		lstr=[u"test",u"test2",3]
 
 		with self.assertRaises(TypeError):
 			Practica.getWordsFrecuencies(lstr)
 
-	def test_getWordsFrecuency_Unicode_Integers(self):
+	def test_getWordsFrecuencies_Unicode_Integers(self):
 		lstr=[u"test",1,2,3]
 
 		with self.assertRaises(TypeError):
 			Practica.getWordsFrecuencies(lstr)
 	
-	def test_getWordsFrecuency_Empty(self):
+	def test_getWordsFrecuencies_Empty(self):
 		lstr=[]
 
 		result=Practica.getWordsFrecuencies(lstr)
 
 		self.assertEqual(result,[],"La lista devuelta no esta vacia")
 
-	def test_getWordsFrecuency_Unicode_Integer(self):
+	def test_getWordsFrecuencies_Unicode_Integer(self):
 		lstr=1
 
 		with self.assertRaises(TypeError):
 			Practica.getWordsFrecuencies(lstr)
 
-	def test_getWordsFrecuency_SpecialCharacter(self):
+	def test_getWordsFrecuencies_SpecialCharacter(self):
 		lstr="©"
 
 		with self.assertRaises(TypeError):
